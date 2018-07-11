@@ -3,18 +3,18 @@
 
 # Hướng dẫn và ví dụ về các vấn đề của Trie - Chủ đề của IIIT Hyderabad
 
-Trong bài post này tôi sẽ viết về Tries và các khái niệm được sử dụng rộng rãi trong các vấn đề về thao tác. Chúng ra sẽ xem qua 2-3 vấn đề mà ở đó Trie khá hữu dụng.
+Trong bài post này tôi sẽ viết về Tries và các khái niệm được sử dụng rộng rãi trong các loại thao tác bit. Chúng ta sẽ xem qua 2-3 vấn đề mà ở đó Trie khá hữu dụng.
 
 Đầu tiên chúng ta tìm hiểu trie là gì. Trie có thể lưu trữ thông tin về keys/number/string một cách ngắn gọn trên 1 cấu trúc dạng cây. Trie chứa các mode mà ở đó mỗi node lại lưu trữ một kí tự/ hoặc một bit. Chúng ta có thể chèn thêm các string/number một cách phù hợp. 
 
 ![][1]
 
 
-Nguồn: wikimpedia.
+Nguồn: wikimedia.
 
 Nhưng chúng ta sẽ xử lý các con số ở đây, và đặc biệt là trên những bit nhị phân. Chúng ta sẽ tìm hiểu chúng khi chúng ta giải quyết các vấn đề.
 
-**Vấn đề 1**: Cho một mảng các số nguyên, chúng ra phải tìm ra 2 phần tử mà XOR của nó tối đã.
+**Vấn đề 1**: Cho một mảng các số nguyên, chúng ra phải tìm ra 2 phần tử mà XOR của nó lớn nhất.
 **Giải pháp:**  
 Giả sử chúng tôi có một dạng cấu trúc dữ liệu có thể đáp ứng hai kiểu truy vấn:
 1\. Chèn một số X
@@ -28,7 +28,7 @@ Trie là kiểu cấu trúc dữ liệu mà chúng ta sẽ sử dụng. Đầu t
   
 Vì vậy, chúng ta theo dõi đường dẫn của số mà chúng ta phải chèn vào, chúng ta không cần phải vẽ lại đường dẫn hiện có nữa. 
 Để chèn một khoá có độ dài N lấy O (N) của log2(N) trong đó MAX là giá trị lớn nhất được thêm vào trie, vì chỉ có tối đa log2(MAX) bit nhị phân trên một số.
-Đây là các chúng ta lưu trữ tất cả dữ liệu về tất cả các số được thêm vào trie cho tới giờ.
+Đây là cách chúng ta lưu trữ tất cả dữ liệu về tất cả các số được thêm vào trie cho tới giờ.
 Bây giờ, để thực hiện truy vấn kiểu thứ 2:
 
 Giả sử số Y của chúng ra là b1,b2,...bn trong đó  b1,b2,... là các bit nhị phân. Chúng ta bắt đầu từ b1. Bây giờ để XOR có thể lớn nhất, chúng ta sẽ cố gắng tạo ra một bit 1 (bit có giá trị là 1) quan trọng nhất sau khi lấy XOR. vì vậy nếu b1 có giá trị 0, chúng ta sẽ cần một bit 1 và ngược lại. Trên một trie, chúng ta đi đến phía bit được yêu cầu. Nếu không có tuỳ chọn thuận lợi, chúng ta sẽ đi hướng khác. Làm việc này lặp đi lặp lại từ i=1 tới i=n, chúng ta sẽ lấy được giá trị lớn nhất có thể của XOR.
