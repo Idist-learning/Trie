@@ -3,9 +3,9 @@
 
 # Hướng dẫn và ví dụ về các vấn đề của Trie - Chủ đề của IIIT Hyderabad
 
-Trong bài post này tôi sẽ viết về Tries và các khái niệm được sử dụng rộng rãi trong các vấn đề về thao tác. Chúng ra sẽ xem qua 2-3 vấn đề mà ở đó Trie khá hữu dụng.
+Trong bài này tôi sẽ viết về Tries và các khái niệm tổng quát được sử dụng trong thao tác nhỏ của vấn đề. Chúng ra sẽ xem qua 2-3 vấn đề mà ở đó Trie khá hữu dụng.
 
-Đầu tiên chúng ta tìm hiểu trie là gì. Trie có thể lưu trữ thông tin về keys/number/string một cách ngắn gọn trên 1 cấu trúc dạng cây. Trie chứa các mode mà ở đó mỗi node lại lưu trữ một kí tự/ hoặc một bit. Chúng ta có thể chèn thêm các string/number một cách phù hợp. 
+Đầu tiên chúng ta tìm hiểu trie là gì. Trie có thể lưu trữ thông tin về keys/number/string một cách ngắn gọn trên 1 cấu trúc dạng cây. Trie chứa các node mà ở đó mỗi node lại lưu trữ một kí tự/ hoặc một bit. Chúng ta có thể chèn thêm các string/number một cách phù hợp. 
 
 ![][1]
 
@@ -21,14 +21,14 @@ Giả sử chúng tôi có một dạng cấu trúc dữ liệu có thể đáp 
 2\. Truyền vào một Y, tìm XOR lớn nhất của Y với mọi số mà đã được thêm vào trước đó.
 
 Nếu chúng ta có dạng cấu trúc dữ liệu này, chúng ta sẽ chèn các số nguyên khi chúng ta thực hiện và với kiểu câu truy vấn thứ 2 chúng ta sẽ tìm giá trị XOR lớn nhất.
-Trie là kiểu cấu trúc dữ liệu mà chúng ta sẽ sử dụng. Đầu tiên, hãy tìm hiểu xem chúng là chèn các phần tử vào trie như thế nào.
+Trie là kiểu cấu trúc dữ liệu mà chúng ta sẽ sử dụng. Đầu tiên, hãy tìm hiểu xem chúng ta chèn các phần tử vào trie như thế nào.
 
 ![][2]
 
   
 Vì vậy, chúng ta theo dõi đường dẫn của số mà chúng ta phải chèn vào, chúng ta không cần phải vẽ lại đường dẫn hiện có nữa. 
 Để chèn một khoá có độ dài N lấy O (N) của log2(N) trong đó MAX là giá trị lớn nhất được thêm vào trie, vì chỉ có tối đa log2(MAX) bit nhị phân trên một số.
-Đây là các chúng ta lưu trữ tất cả dữ liệu về tất cả các số được thêm vào trie cho tới giờ.
+Đây là cách chúng ta lưu trữ tất cả dữ liệu về tất cả các số được thêm vào trie cho tới giờ.
 Bây giờ, để thực hiện truy vấn kiểu thứ 2:
 
 Giả sử số Y của chúng ra là b1,b2,...bn trong đó  b1,b2,... là các bit nhị phân. Chúng ta bắt đầu từ b1. Bây giờ để XOR có thể lớn nhất, chúng ta sẽ cố gắng tạo ra một bit 1 (bit có giá trị là 1) quan trọng nhất sau khi lấy XOR. vì vậy nếu b1 có giá trị 0, chúng ta sẽ cần một bit 1 và ngược lại. Trên một trie, chúng ta đi đến phía bit được yêu cầu. Nếu không có tuỳ chọn thuận lợi, chúng ta sẽ đi hướng khác. Làm việc này lặp đi lặp lại từ i=1 tới i=n, chúng ta sẽ lấy được giá trị lớn nhất có thể của XOR.
@@ -56,7 +56,7 @@ Giả sử mảng con của chúng ta với một giá trị XOR lớn nhất đ
 
 Bạn có thể thử vấn đề này ở đây: [ACM-ICPC Live Archive][4]
 
-**Vấn đề 3**: Với một mảng các số nguyên dương, bạn phải in ra số lương các mảng con có XOR nhỏ hơn số K.
+**Vấn đề 3**: Với một mảng các số nguyên dương, bạn phải in ra số lượng các mảng con có XOR nhỏ hơn số K.
 
 **Giải pháp:**  
 Điều này lại một lần nữa sử dụng các khái niệm chúng ta đã tìm hiểu từ trước tới giờ. Chúng ta sẽ thực hiện như câu hỏi trước. 
@@ -112,10 +112,10 @@ CÁc vấn đề khác khi sử dụng Trie(yay! :P)
 
 **Các vấn đề phụ**: cho một nhóm các string không rỗng có _n_ phần tử. Trong trò chơi hai người cùng xây dựng một từ, bắt đầu từ một từ rỗng. Các người chơi đi qua các lượt. Trong lượt của người chơi phải thêm một chữ cái tốt nhất vào cuối của từ đó, và từ kết quả phải là tiền tố của ít nhất một trong các string thuộc nhóm đó. Người chơi sẽ thua nếu họ không thể tiếp tục.
 
-Chúng ta cần tìm người chơi nào (thứ nhất hoặc thứ 2) có chiến lược để chiến thắng.
+Chúng ta cần tìm người chơi nào (thứ nhất hoặc thứ 2) có khả năng chiến thắng.
 
 Vì vậy, ý tưởng ở đây là xây dựng lại một trie cho tất cả các chuỗi. Vì sao? Bởi vì một trie có thể lưu trữ thông tin về một tiền tố. 
-Bây giờ chúng ta sẽ thử đánh giá mỗi node nếu là người chơi đầu tiên thì có chiến lược chiến thắng hay không. Chúng ta có thể thực hiện việc này bằng đệ quy. Ứng với node v, với mỗi node u sao cho u là node con gần nhất của v, nếu người chơi đầu tiên có chiến lược thua với nút v, thì đối với node v người chơi đầu tiên sẽ có chiến lược thắng.
+Bây giờ chúng ta sẽ thử đánh giá mỗi node nếu là người chơi đầu tiên thì có khả năng chiến thắng hay không. Chúng ta có thể thực hiện việc này bằng đệ quy. Ứng với node v, với mỗi node u sao cho u là node con gần nhất của v, nếu người chơi đầu tiên có khả năng thua với nút v, thì đối với node v người chơi đầu tiên sẽ có khả năng thắng.
 Để ví dụ, chúng ta có "abc", "abd","acd".
 Trie của chúng ta sẽ trông như này:
 
